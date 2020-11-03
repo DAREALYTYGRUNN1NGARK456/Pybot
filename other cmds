@@ -1,0 +1,13 @@
+@client.command()
+async def plz(ctx):
+	await ctx.send(100 * math.pi)
+	await ctx.send("thats 100 * PI")
+
+@client.command()
+async def yeet(ctx):
+	await ctx.send("YEEEEEEEEEET")
+
+@client.command()
+async def yeeter(ctx):
+	await ctx.send("YOUR A YEETER?")
+

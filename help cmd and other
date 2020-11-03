@@ -1,0 +1,37 @@
+@client.command()
+async def withdraw(ctx,amount = None):
+         await open_account(ctx.author)
+         if amount == None:
+                await ctx.send("cant withdraw anything")
+                return
+                bal = await update_bank(ctx.author)
+                amount = int(amount)
+                if amount>bal[1]:
+                  await ctx.send("YOU DONT HAVE THAT MUCH")
+                  return
+                if amount<0:
+                 await ctx.send("YOU HAVE $0 COINS")
+                 return
+         await update_bank(ctx.author,amount)
+         print("got pass error")
+         await update_bank(ctx.author,-1*amount,"bank")
+         await ctx.send(f"you have withdrawed {amount} of COINS")
+
+@client.command()
+async def deposit(ctx,amount = None):
+         await open_account(ctx.author)
+         if amount == None:
+                await ctx.send("cant deposited anything")
+                return
+                bal = await update_bank(ctx.author)
+                amount = int(amount)
+                if amount>bal[0]:
+                  await ctx.send("YOU DONT HAVE THAT MUCH")
+                  return
+                if amount<0:
+                 await ctx.send("YOU CANT deposit ANYTHING BELOW 1")
+                 return
+         await update_bank(ctx.author,amount)
+         print("got pass error")
+         await update_bank(ctx.author,-1*amount,"wallet")
+         await ctx.send(f"you have deposited {amount} of COINS")        
